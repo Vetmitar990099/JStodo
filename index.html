@@ -16,23 +16,23 @@
         </div>
         <div id="main">
             <!--left and right columns-->
-            <div id="lists">
-                <div class="listname">
-                    <button onclick="newlist()">+ New List</button>
+            <div id="alllists">
+                <form action="" class="newlistform">
+                    <input type="text" class="newlistinput"></input>
+                    <button> Add List</button>
+                </form>
+                <div id="manyalist">
+                    <ul id=lists >
+                        <li class="listname">Cereal Killer</li>
+                        <li class="listname">Bread</li>
+                    </ul>
                 </div>
-                <div class="listname">
-                    <a href="#">Shopping List</a>
-                </div>
-                <div class="listname">
-                    <a href="#">To-do List</a>
-                </div>
+                <button class="deletelist">Delete List</button>
             </div>
-            <div>
-                <div class="items">
-                    <a>listitem1</a>
-                </div>
-                <div class="items">
-                    <a>listitem2</a>
+            <div class="todolistdisplay">
+                <div class="todotitle">Heading</div>
+                <div class="todolist">
+                    <div class="tasks">task 1</div>
                 </div>
             </div>
         </div>
