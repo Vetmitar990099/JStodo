@@ -6,14 +6,28 @@ let todolistdisplay = document.querySelector('.todolistdisplay')
 let todotitle = document.querySelector('.todotitle')
 let todolist = document.querySelector('.todolist')
 let tasks = document.querySelector('.tasks')
+let tasktemplate = document.getElementById('tasktemplate')
+let newtaskform = document.querySelector('.newtaskform')
+let newtaskinput = document.querySelector('.newtaskinput')
+let deletecompletedtask = document.querySelector('.deletecompletedtask')
 
 const LOCAL_STORAGE_LIST_KEY = 'list.list'
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'list.SelectedListId'
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
+
 listsContainer.addEventListener('click', e => {
   if(e.target.tagName.toLowerCase() === 'li') {
     selectedListId = e.target.dataset.listid
+    saveandrender()
+  }
+})
+
+todolist.addEventListener('click', e => {
+  if(e.target.tagName.toLowerCase() === 'input') {
+    const selectedList = lists.find(list => list.id === selectedListId)
+    const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
+    selectedTask.complete = e.target.checked
     saveandrender()
   }
 })
@@ -34,8 +48,29 @@ newlistform.addEventListener('submit', e => {
   saveandrender()
 })
 
+deletecompletedtask.addEventListener('click', e => {
+  const selectedList = lists.find(list => list.id === selectedListId)
+  selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
+  saveandrender()
+})
+
+newtaskform.addEventListener('submit', e => {
+  e.preventDefault()
+  const taskname = newtaskinput.value
+  if (taskname == null || taskname === '') return
+  const task = createtask(taskname)
+  newtaskinput.value = null
+ const selectedList = lists.find(list => list.id === selectedListId)
+ selectedList.tasks.push(task)
+  saveandrender()
+})
+
 function createlist(name) {
   return {id: Date.now().toString(), name: name, tasks: []}
+}
+
+function createtask(name) {
+  return {id: Date.now().toString(), name: name, complete: false}
 }
 
 function saveandrender() {
@@ -51,13 +86,28 @@ function save() {
 function render() {
   clearElement(listsContainer)
   renderlists()
-  const selectedList = lists.find(list.id === selectedListId)
+  let selectedList = lists.find(list => list.id === selectedListId)
   if (selectedListId == null) {
-    tododisplay.style.display = 'flex'
-    todotitle.innerText = selectedList.name
+    todolistdisplay.style.visibility = 'hidden'
   } else {
-    tododisplay.style.display = ''
+    todolistdisplay.style.visibility = 'visible'
+    todotitle.innerText = selectedList.name
+    clearElement(todolist)
+    rendertasks(selectedList)
   }
+}
+
+function rendertasks(selectedList){
+  selectedList.tasks.forEach(tasks => {
+    const taskelement = document.importNode(tasktemplate.content, true)
+    const checkbox = taskelement.querySelector('input')
+    checkbox.id = tasks.id
+    checkbox.checked = tasks.complete
+    const label = taskelement.querySelector('label')
+    label.htmlFor = tasks.id
+    label.append(tasks.name)
+    todolist.appendChild(taskelement)
+  }) 
 }
 
 function renderlists() {

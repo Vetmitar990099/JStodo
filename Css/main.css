@@ -61,11 +61,12 @@
   background-color: red;
   width: 30vw;
   height: 30vh;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-left: 20vw;
+  visibility: hidden;
 }
 
 /*# sourceMappingURL=main.css.map */
