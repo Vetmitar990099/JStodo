@@ -9,34 +9,28 @@
     <link href="css/main.css" rel="stylesheet" >
 </head>
 <body>
-    <div>
-        <!--Top header-->
-        <div>
-            
+    <div id="main">
+        <!--left and right columns-->
+        <div id="alllists">
+            <form action="" class="newlistform">
+                <input type="text" class="newlistinput"></input>
+                <button> Add List</button>
+            </form>
+            <div id="manyalist">
+                <ul id=lists >
+                </ul>
+            </div>
+            <button class="deletelist">Delete List</button>
         </div>
-        <div id="main">
-            <!--left and right columns-->
-            <div id="alllists">
-                <form action="" class="newlistform">
-                    <input type="text" class="newlistinput"></input>
-                    <button> Add List</button>
-                </form>
-                <div id="manyalist">
-                    <ul id=lists >
-                    </ul>
-                </div>
-                <button class="deletelist">Delete List</button>
+        <div class="todolistdisplay">
+            <div class="todotitle">Heading</div>
+            <div class="todolist">
             </div>
-            <div class="todolistdisplay">
-                <div class="todotitle">Heading</div>
-                <div class="todolist">
-                </div>
-                <form action="" class="newtaskform">
-                    <input type="text" class="newtaskinput"></input>
-                    <button> Add Task</button>
-                </form>
-                <button class="deletecompletedtask">Clear Completed Task</button>
-            </div>
+            <form action="" class="newtaskform">
+                <input type="text" class="newtaskinput"></input>
+                <button> Add Task</button>
+            </form>
+            <button class="deletecompletedtask">Clear Completed Task</button>
         </div>
     </div>
     <template id="tasktemplate">
