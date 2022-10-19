@@ -10,6 +10,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 22vw;
+    border-radius: 5px;
 }
 .items {
     background-color: aliceblue;
@@ -24,18 +25,17 @@ body {
     height: 100vh;
     width: 100vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 0px;
     margin: 0px;
 }
 #alllists {
-    background-color: blue;
-    height: 98vh;
-    width: 30vw;
+    background-color: grey;
+    height: 95vh;
+    width: 40vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 30px;
 }
 .newlistform {
     background-color: aliceblue;
@@ -57,13 +57,29 @@ body {
     height: 20px;
 }
 .todolistdisplay {
-    background-color: red;
-    width: 30vw;
-    height: 30vh;
+    background-color: grayscale($color: #404040f8);
+    height: 95vh;
+    width: 60vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-left: 20vw;
     visibility: hidden;
+    padding-top: 30px;
+}
+.tasks {
+    border-radius: 5px;
+    background-color: aliceblue;
+    width: 20vw;
+}
+.todotitle {
+    color: aqua;
+}
+.header {
+    background-color: aliceblue;
+    height: 5vh;
+    font-size: 40px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+    align-items: center;
 }

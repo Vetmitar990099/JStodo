@@ -87,7 +87,7 @@ function render() {
   clearElement(listsContainer)
   renderlists()
   let selectedList = lists.find(list => list.id === selectedListId)
-  if (selectedListId == null) {
+  if (selectedListId === null) {
     todolistdisplay.style.visibility = 'hidden'
   } else {
     todolistdisplay.style.visibility = 'visible'
